@@ -1,0 +1,19 @@
+{
+    "name": "dynamic_server",
+    "description": "Dynamic Server",
+    "version": "1.0.0",
+    "author": {
+        "name": "Ethan Johnson",
+        "email": "ethan.johnson@stthomas.edu"
+    },
+    "contributors": [
+    ],
+    "repository": {
+        "url": "https://github.com/CWCarlin/webdev-dynamic"
+    },
+    "dependencies": {
+        "chart.js": "^4.4.0",
+        "express": "^4.18.2",
+        "sqlite3": "^5.1.6"
+    }
+}

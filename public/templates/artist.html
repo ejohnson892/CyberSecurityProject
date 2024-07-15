@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="/css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title> Songs from $$ARTIST$$ </title>
+    </head>
+    <body>
+    <!-- SET UP TITLE AND NAVIGATION BUTTONS -->
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="cell" style="text-align:center; margin-top: 6vw;">
+                        <h1>Songs from $$ARTIST$$</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div id="prev_button" class="cell small-12 large-4">
+                        $$PREV_ADDRESS$$
+                    </div>
+                    <div id="menu_button" class="cell small-12 large-4">
+                        <a class="link_button" href="/" target="_self">Return to Menu</a>
+                    </div>
+                    <div id="next_button" class="cell small-12 large-4">
+                        $$NEXT_ADDRESS$$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- START OF CHART MAKING -->
+        <div class="chart-container" style="position: relative; height:85vh; width:100vw">
+            <canvas id="myChart">
+                <script>
+                    const ctx = document.getElementById('myChart');
+                    const plugin = {
+                        id: 'customCanvasBackgroundColor',
+                        beforeDraw: (chart, args, options) => {
+                            const {ctx} = chart;
+                            ctx.save();
+                            ctx.globalCompositeOperation = 'destination-over';
+                            ctx.fillStyle = options.color || '#99ffff';
+                            ctx.fillRect(0, 0, chart.width, chart.height);
+                            ctx.restore();
+                        }
+                    };
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010'],
+                            datasets: [{
+                                label: 'Danceability Over The Years',
+                                data: [$$x1$$,$$x2$$,$$x3$$,$$x4$$,$$x5$$,$$x6$$,$$x7$$,$$x8$$,$$x9$$,$$x10$$],
+                                borderWidth: 1,
+                                backgroundColor: '#1db954',
+                            }]
+                        },
+                        options: {
+                            layout: { padding: 20 },
+                            maintainAspectRatio: false,
+                            scales: { y: {beginAtZero: true} },
+                            plugins: {
+                                customCanvasBackgroundColor: {color: 'white'},
+                                legend: {
+                                    labels: {
+                                        color: 'black',
+                                        font: {
+                                            size: 25,
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        plugins: [plugin],
+                    });
+                </script>
+            </canvas>
+        </div>
+    <!-- END OF CHART MAKING -->
+
+    <!-- FILL TABLE -->
+    <table>
+        <thead>
+        <tr>
+            <th>Song Title</th>
+            <th>Release Year</th>
+            <th>Danceability Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        $$TABLE_BODY$$
+        </tbody>
+    </table>
+
+        <!-- Script Tags -->
+        <script src="/js/vendor/jquery.js"></script>
+        <script src="/js/vendor/what-input.js"></script>
+        <script src="/js/vendor/foundation.js"></script>
+        <script type="application/javascript">
+            $(document).foundation();
+        </script>
+    </body>
+</html>
